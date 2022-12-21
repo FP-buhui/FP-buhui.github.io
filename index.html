@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="fanping+js/echarts.js"></script>
+  <script src="pie-simple.html"></script>
+
+</head>
+<body>
+     <div id="main" style="width: 600px;height:400px;position:absolute;left:140px;top:100px;background-color: rgb(249, 255, 236);"></div>
+     <div id="container" style="width: 600px;height:400px;position:absolute;left:800px;top:100px;background-color:rgb(249, 255, 236) ;"></div>
+     <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+  
+        // 指定图表的配置项和数据
+        var option = {
+          title: {
+            text: '2022年中国虚拟主播用户月收入分布',
+          top:375,
+          left:145,
+
+
+         
+          },
+     
+          
+  xAxis: {
+    type: "category",
+    
+    data: ["3000元以下" , "3001-5000元" , "5001-8000元" , "8001-15000元" , "15000元以上"],
+    axisLabel:{
+      interval:0,
+     
+    }
+  },
+
+          yAxis: [{
+    type: "value",
+    show: false
+  }],
+  legend: {
+    
+  },
+          series: [
+            {
+              name: '用户年龄占比（%）',
+              type: 'bar',
+           
+              data: [5, 20, 36, 10, 10, 20],
+              
+              label: {
+        show: true,
+        position: 'top'
+      },
+      data: [3.8, 15.0, 37.9,30.9, 12.4]
+    
+            }
+            
+          ]
+        };
+  
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+        
+        var dom = document.getElementById('container');
+    var myChart1 = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    option = {
+  title: {
+    text: '2022年中国虚拟主播用户城市线级情况',
+  
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'item'
+  },
+  legend: {
+    orient: 'vertical',
+    left: 'left'
+  },
+  series: [
+    {
+      name: '百分比',
+      type: 'pie',
+      radius: '50%',
+      data: [
+        { value: 40.1, name: '一线城市'},
+        { value: 30.5, name: '二线城市' },
+        { value: 23.3, name: '三线城市' },
+        { value: 1.9, name: '四线城市' },
+        { value: 3.2, name: '五线城市' }
+      ],
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      }
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart1.setOption(option);
+    }
+
+    
+
+    window.onresize=function(){
+        myChart.resize();
+        myChart1.resize();
+      }
+      </script>
+    
+</body>
+</html>
